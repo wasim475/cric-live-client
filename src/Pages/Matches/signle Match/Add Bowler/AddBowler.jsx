@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { FaRegPlusSquare } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { stateInfo } from "../../../../provider/StateProvider";
 
@@ -77,7 +78,13 @@ const AddBowler = ({ match, fetchBatterData }) => {
         ref={drawerCheckboxRef} // Attach ref to the drawer checkbox
       />
       <div className="drawer-content">
-        <label htmlFor="my-drawer-4" className="font-bold drawer-button z-10">
+        <label
+          htmlFor="my-drawer-4"
+          className="font-bold drawer-button flex items-center"
+        >
+          <span className="text-green-500 font-bold">
+            <FaRegPlusSquare />
+          </span>
           Bowler
         </label>
       </div>

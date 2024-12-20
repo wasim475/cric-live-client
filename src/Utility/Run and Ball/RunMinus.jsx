@@ -150,7 +150,7 @@ const RunMinus = () => {
 
   return (
     <>
-      <section className='grid grid-cols-4 gap-2'>
+      <section className="grid grid-cols-4 gap-2">
         <button
           onClick={() => handleMinusOne(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "

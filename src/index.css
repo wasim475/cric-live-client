@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.custom-text{
+    font-size: 18px;
+    color: green;
+}
+
+.custom-icon{
+    font-size: small;
+}

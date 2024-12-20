@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { FaRegPlusSquare } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { stateInfo } from "../../../../provider/StateProvider";
 
@@ -76,7 +77,13 @@ const AddBatter = ({ match, fetchBatterData }) => {
       />
       <div className="drawer-content">
         {/* Page content */}
-        <label htmlFor="my-drawer" className="font-bold drawer-button">
+        <label
+          htmlFor="my-drawer"
+          className="font-bold drawer-button flex items-center"
+        >
+          <span className="text-green-500">
+            <FaRegPlusSquare />
+          </span>
           Batter
         </label>
       </div>

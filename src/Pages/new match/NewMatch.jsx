@@ -27,6 +27,7 @@ const NewMatch = () => {
   const hadleSubmit = () => {
     let teamTotal = 0;
     let teamOver = 0;
+    let lastTen = [];
     let extra = 0;
     let noBall = 0;
     let wide = 0;
@@ -39,6 +40,7 @@ const NewMatch = () => {
       displayName,
       photoURL,
       email,
+      lastTen,
       team1,
       team2,
       batNow,

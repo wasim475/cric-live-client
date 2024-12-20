@@ -27,6 +27,12 @@ const ViewMatches = ({ match, fetchMatches }) => {
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      width: "320px",
+      customClass: {
+        text: "custom-text",
+        icon: "custom-icon",
+        title: "costom-title",
+      },
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",

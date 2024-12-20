@@ -16,7 +16,7 @@ const HandleProvider = ({ children }) => {
 
   const handleSingleMatch = (match) => {
     setSingleMatchInfo(match);
-    console.log(singleMatchInfo);
+    // console.log(singleMatchInfo);
     // Save to local storage
     localStorage.setItem("singleMatchInfo", JSON.stringify(match));
   };

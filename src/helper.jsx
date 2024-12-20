@@ -75,7 +75,9 @@ const AddBatter = ({ match, fetchBatterData, onOpen }) => {
   };
 
   return (
-    <div className="drawer z-[100]"> {/* Higher z-index for overlay */}
+    <div className="drawer z-[100]">
+      {" "}
+      {/* Higher z-index for overlay */}
       <input
         id="batter-drawer"
         type="checkbox"

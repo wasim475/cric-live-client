@@ -13,7 +13,7 @@ const MainRoute = () => {
       <Routes>
         <Route element={<Root />}>
           <Route path="/" element={<Home />} />
-          <Route path="/newmatch" element={<NewMatch />} />
+          <Route path="/newmatch" element={<PrivateRoute><NewMatch /></PrivateRoute>} />
           <Route path="/matches/:id"  element={<SingleMatch/>} />
           <Route path="/login"  element={<Login/>} />
             <Route path="/my-matches"  element={

@@ -278,7 +278,7 @@ const ExtraMinus = () => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   return (
-    <div className='grid grid-cols-4 gap-2'>
+    <div className="grid grid-cols-4 gap-2">
       <button
         onClick={() => handleMinusWide(teamTotal, singleMatchInfo)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg"
@@ -309,7 +309,6 @@ const ExtraMinus = () => {
       >
         Wd-5
       </button>{" "}
-     
       <button
         onClick={() => handleMinusNoBall(teamTotal, singleMatchInfo)}
         className="bg-red-300 px-2 py-1 text-white  rounded-lg "
@@ -340,7 +339,6 @@ const ExtraMinus = () => {
       >
         4LB
       </button>{" "}
-     
       <button
         onClick={() => handleMinusBye(teamTotal, singleMatchInfo)}
         className="bg-red-400 px-2 py-1 text-white  rounded-lg  "

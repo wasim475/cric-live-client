@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AddBatter from "../../Pages/Matches/signle Match/Add Batter/AddBatter";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { handlesInfo } from "../../provider/HandleProvide";
@@ -51,7 +51,7 @@ const RunandBall = () => {
   };
 
   return (
-    <main className='z-10'>
+    <main className="z-10">
       {/* Run */}
       <section
         className="fixed bottom-12 -right-5"
@@ -181,9 +181,9 @@ const RunandBall = () => {
                 {/* ============================
                   Batter Pair Part Start
                 ================================*/}
-                <section className="border p-3">
+                <section className="border p-1 rounded-xl">
                   <h1>Batting Pair</h1>
-                  <div className="flex gap-x-2 mt-2">
+                  <div className="flex gap-x-2 mt-1">
                     {activeBatters?.map((batter, index) => (
                       <button
                         key={index}
@@ -207,8 +207,6 @@ const RunandBall = () => {
                 {/* ============================
                   Batter Pair Part End
                 ================================*/}
-
-                
               </div>
 
               <input

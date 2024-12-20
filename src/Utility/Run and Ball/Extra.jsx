@@ -278,7 +278,7 @@ const Extra = () => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   return (
-    <div className='grid grid-cols-4 gap-2'>
+    <div className="grid grid-cols-4 gap-2">
       <button
         onClick={() => handleWide(teamTotal, singleMatchInfo)}
         className="bg-cyan-400 px-2 py-1 rounded-lg"

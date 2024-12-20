@@ -11,10 +11,10 @@ const Navbar = () => {
     <nav className="flex justify-between mt-1">
       <div>
         <Link
-          className="text-2xl font-extrabold text-white bg-green-800 px-2 rounded-md flex justify-center items-center"
+          className="text-xl font-extrabold px-2 rounded-md flex justify-center items-center"
           to={"/"}
         >
-          Cric Live <MdOutlineSportsHandball />{" "}
+          <span className="bg-black text-white px-1 rounded-md font-medium">Cric</span> Live
         </Link>
       </div>
       <div className="flex justify-center gap-x-5">
