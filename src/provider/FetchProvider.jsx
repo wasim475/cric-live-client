@@ -1,6 +1,5 @@
 import { createContext, useContext } from "react";
 import { AuthContex } from "./AuthProvider";
-import { handlesInfo } from "./HandleProvide";
 import { stateInfo } from "./StateProvider";
 
 export const fetchInfo = createContext(null);
@@ -13,10 +12,8 @@ const FetchProvider = ({ children }) => {
     setBowlers,
     matches,
     setMatches,
-    singleMatchId
+    singleMatchId,
   } = useContext(stateInfo);
- 
- 
 
   const fetchMatches = () => {
     setLoading(true);

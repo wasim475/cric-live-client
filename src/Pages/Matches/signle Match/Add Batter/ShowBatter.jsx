@@ -2,9 +2,11 @@ import { useContext, useState } from "react";
 import { VscTriangleLeft } from "react-icons/vsc";
 import { toast } from "react-toastify";
 import { AuthContex } from "../../../../provider/AuthProvider";
+import { stateInfo } from "../../../../provider/StateProvider";
 
 const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
   let { name, run, ball, fours, sixes, sr, id, active } = batter;
+  const { batters } = useContext(stateInfo);
   const strikeRate = ball > 0 ? parseFloat(((run * 100) / ball).toFixed(1)) : 0;
   const { user } = useContext(AuthContex);
   const { email } = singleMatchData;
@@ -38,7 +40,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
         toast.error("Something went wrong! Please try again.");
       });
   };
-
+  console.log(batters);
   const handleRunOut = (batterId) => {
     fetch(`https://cric-server.vercel.app/matches/${matchId}/${batterId}`, {
       method: "PUT", // Use uppercase "PUT" for better consistency
@@ -115,7 +117,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
               className="bg-red-400 dropdown dropdown-left dropdown-end rounded-lg text-white"
             >
               <div tabIndex={0} role="button" className="px-2">
-                Out
+                <button disabled={batters.length >= 10}>Out</button>
               </div>
               {outOptins && (
                 <ul

@@ -39,6 +39,8 @@ const AuthProvider = ({children}) => {
             if(result.user){
                 toast('Login Successfull.')
                 Navigate("/")
+            } else{
+                toast("You are in suspense because of Criclive.")
             }
         })
     }

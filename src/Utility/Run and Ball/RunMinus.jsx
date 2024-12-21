@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
-import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 
 const RunMinus = () => {

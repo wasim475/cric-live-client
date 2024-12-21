@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import AddBatter from "../../Pages/Matches/signle Match/Add Batter/AddBatter";
 import { fetchInfo } from "../../provider/FetchProvider";
-import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 import Extra from "./Extra";
 import ExtraMinus from "./ExtraMinus";
@@ -10,7 +9,8 @@ import RunPlus from "./RunPlus";
 
 const RunandBall = () => {
   // const { singleMatchId } = useContext(handlesInfo);
-  const { singleMatchData, activeBatters,singleMatchId } = useContext(stateInfo);
+  const { singleMatchData, activeBatters, singleMatchId } =
+    useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
 
   const { team1, team2, batNow, teamBall, totalOver, _id, teamTotal } =

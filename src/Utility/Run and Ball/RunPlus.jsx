@@ -19,6 +19,7 @@ const RunPlus = () => {
     handleZero,
     handleOver,
     handleMOver,
+    handleWide
   } = useContext(handlesInfo);
   return (
     <>
@@ -60,12 +61,19 @@ const RunPlus = () => {
         >
           Over
         </button>
-        <button
+        {/* Maiden over */}
+        {/* <button
           onClick={() => handleMOver(totalOver, _id, fetchBatterData)}
           className="bg-violet-500  py-3 rounded-lg text-white font-bold  "
         >
           M.Ov
-        </button>
+        </button> */}
+        <button
+        onClick={() => handleWide(teamTotal, _id, fetchBatterData)}
+        className="bg-cyan-400 px-0 py-1 text-white font-bold rounded-lg"
+      >
+        Wide
+      </button>
         <button
           onClick={() => handleZero(teamTotal, _id, fetchBatterData)}
           className="bg-blue-600 px-4 py-3 rounded-lg text-white font-bold "

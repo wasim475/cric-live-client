@@ -6,6 +6,7 @@ import { stateInfo } from "../../provider/StateProvider";
 
 const NewMatch = () => {
   const { user } = useContext(AuthContex);
+  const [showSubmit, setShowSubmit] = useState(false);
   const [batNow, setBatNow] = useState(null);
   const [totalOver, setTotalOver] = useState(null);
   const [target, setTarget] = useState(null);
@@ -134,7 +135,10 @@ const NewMatch = () => {
               <div>
                 <h1>Will {batNow} chase target?</h1>
                 <button
-                  onClick={() => setHideTargetButtons(!hideTargetButtons)}
+                  onClick={() => {
+                    setHideTargetButtons(!hideTargetButtons);
+                    setShowSubmit(!showSubmit);
+                  }}
                   className="btn btn-error mr-2"
                 >
                   No
@@ -169,15 +173,17 @@ const NewMatch = () => {
         )}
 
         <div>
-          <button
-            className={`${
-              teamNames ? "bg-green-500 text-white" : "bg-gray-400"
-            } px-3 py-1 rounded-lg`}
-            disabled={!teamNames?.team1 && !teamNames?.team2}
-            onClick={hadleSubmit}
-          >
-            Submit
-          </button>
+          {(showSubmit || target) && (
+            <button
+              className={`${
+                teamNames ? "bg-green-500 text-white" : "bg-gray-400"
+              } px-3 py-1 rounded-lg`}
+              disabled={totalOver === 0}
+              onClick={hadleSubmit}
+            >
+              Create Match
+            </button>
+          )}
         </div>
       </main>
     </>

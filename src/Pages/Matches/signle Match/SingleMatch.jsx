@@ -1,27 +1,28 @@
 import { useContext, useEffect } from "react";
+import { useLocation, useParams } from "react-router";
 import loader from "../../../assets/pic/loader.gif";
 import { AuthContex } from "../../../provider/AuthProvider";
 import { fetchInfo } from "../../../provider/FetchProvider";
-import { handlesInfo } from "../../../provider/HandleProvide";
 import { stateInfo } from "../../../provider/StateProvider";
+import Copy from "../../../Utility/CopyUrl/Copy";
 import RunandBall from "../../../Utility/Run and Ball/RunandBall";
 import ScoreCard from "../../../Utility/ScoreCard/ScoreCard";
 import AddBatter from "./Add Batter/AddBatter";
 import ShowBatter from "./Add Batter/ShowBatter";
 import AddBowler from "./Add Bowler/AddBowler";
 import ShowBowler from "./Add Bowler/ShowBowler";
-import { useLocation, useParams } from 'react-router';
-import Copy from '../../../Utility/CopyUrl/Copy';
 
 const SingleMatch = () => {
-  const location = useLocation()
+  const location = useLocation();
   const { user, loading } = useContext(AuthContex);
-  const { matches, setMatches, singleMatchId, setSingleMatchId, setCopyValue } = useContext(stateInfo);
+  const { matches, setMatches, singleMatchId, setSingleMatchId, setCopyValue } =
+    useContext(stateInfo);
   // console.log()
-  setCopyValue(`https://criclive1.netlify.app${location.pathname}`)
+  setCopyValue(`https://criclive1.netlify.app${location.pathname}`);
   const { id } = useParams();
-  setSingleMatchId(id)
- 
+  setSingleMatchId(id);
+  // console.log("67663f280166a2ec477d2936", id)
+
   const {
     batters,
     setBatters,
@@ -31,10 +32,6 @@ const SingleMatch = () => {
     activeBatters,
   } = useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
-
-  useEffect(() => {
-    fetchBatterData();
-  }, [singleMatchId]);
   const {
     email,
     team1,
@@ -57,7 +54,7 @@ const SingleMatch = () => {
   const reverseLastTen = lastTen?.reverse();
 
   const handleLastTen = (matchId, index, extra) => {
-    console.log("match Id:", matchId, "lastOne:", extra);
+    // console.log("match Id:", matchId, "lastOne:", extra);
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}/lastten`, {
       method: "DELETE",
@@ -77,6 +74,13 @@ const SingleMatch = () => {
 
   const remaining = target - teamTotal;
   const remainingWicket = 10 - teamWicket;
+
+  useEffect(() => {
+    fetchBatterData();
+  }, [singleMatchId]);
+
+  console.log(teamOver === parseInt(totalOver));
+
   return (
     <main>
       {loading ? (
@@ -91,9 +95,11 @@ const SingleMatch = () => {
               {" "}
               <span className="text-xl font-bold">{team1}</span>
               <span> vs </span>
-              <span className="text-xl font-bold">{team2}</span> <span><Copy/></span>
+              <span className="text-xl font-bold">{team2}</span>{" "}
+              <span>
+                <Copy />
+              </span>
             </h1>
-            
           </section>
 
           <section>
@@ -101,12 +107,15 @@ const SingleMatch = () => {
               <>
                 <h1>Target: {target}</h1>
                 <h1>
-                  {target > teamTotal
+                  {target &&
+                  target > teamTotal &&
+                  teamWicket < 10 &&
+                  parseInt(totalOver) > teamOver
                     ? `${batNow} need ${remaining} to win.`
                     : target < teamTotal
                     ? `${batNow} win by ${remainingWicket} wickets`
-                    : teamWicket >= 10
-                    ? `${batNow} lose by ${remaining} runs`
+                    : teamWicket === 10 || parseInt(totalOver) === teamOver
+                    ? `${batNow} lose by ${remaining - 1} runs`
                     : ""}
                 </h1>
               </>

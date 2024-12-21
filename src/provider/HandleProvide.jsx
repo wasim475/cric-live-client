@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import { toast } from "react-toastify";
 import { stateInfo } from "./StateProvider";
 
@@ -11,7 +11,7 @@ const HandleProvider = ({ children }) => {
   //   return savedMatch ? JSON.parse(savedMatch) : null;
   // });
 
-  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket , singleMatchId} =
+  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket, singleMatchId } =
     useContext(stateInfo);
 
   // const handleSingleMatch = (match) => {
@@ -183,13 +183,7 @@ const HandleProvider = ({ children }) => {
   Runs Handle end 
  =================================================== */
 
-  // Keep localStorage in sync with singleMatchId
 
-  useEffect(() => {
-    if (singleMatchId) {
-      localStorage.setItem("singleMatchId", JSON.stringify(singleMatchId));
-    }
-  }, [singleMatchId]);
 
   const handleStrikeChange = (matchId, batterId) => {
     fetch(
@@ -210,6 +204,26 @@ const HandleProvider = ({ children }) => {
       .catch((err) => console.error(err));
   };
 
+  const handleWide = (total, id, fetchBatterData) => {
+    fetch(`https://cric-server.vercel.app/extra/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ incrementValue: 1, extra: "wide" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Response from backend:", data);
+        if (data.modifiedCount > 0) {
+          fetchBatterData();
+        } else {
+          console.log("No changes made.");
+        }
+      })
+      .catch((error) => console.error("Error updating teamTotal:", error));
+  };
+
   const info = {
     // handle runs
     handleOne,
@@ -219,6 +233,7 @@ const HandleProvider = ({ children }) => {
     handleSix,
     handleZero,
     handleOver,
+    handleWide
   };
 
   return <handlesInfo.Provider value={info}>{children}</handlesInfo.Provider>;

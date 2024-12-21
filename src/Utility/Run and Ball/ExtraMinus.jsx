@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
-import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 
 const ExtraMinus = () => {
@@ -8,7 +7,7 @@ const ExtraMinus = () => {
   // const { singleMatchId } = useContext(handlesInfo);
   const { teamTotal } = singleMatchData;
   const { fetchBatterData } = useContext(fetchInfo);
-   // const { singleMatchId } = useContext(stateInfo);
+  // const { singleMatchId } = useContext(stateInfo);
 
   const handleMinusWide = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {

@@ -18,6 +18,9 @@ const ViewMatches = ({ match, fetchMatches }) => {
     email,
     displayName,
     photoURL,
+    target,
+    teamOver,
+    totalOver,
   } = match;
   const { handleSingleMatch } = useContext(handlesInfo);
   const { fetchBatterData } = useContext(fetchInfo);
@@ -56,22 +59,24 @@ const ViewMatches = ({ match, fetchMatches }) => {
       }
     });
   };
+  const remaining = target - teamTotal;
+  const remainingWicket = 10 - teamWicket;
   // console.log(match)
   return (
     <>
-      <Link 
-      // onClick={() => handleSingleMatch(_id)} 
-      to={`/matches/${match._id}`}
-      // state={{ matchId: match._id }}
+      <Link
+        // onClick={() => handleSingleMatch(_id)}
+        to={`/matches/${match._id}`}
+        // state={{ matchId: match._id }}
       >
-        <div className="card bg-base-100 image-full w-52 shadow-xl">
+        <div className="card  bg-base-100 image-full w-44 ">
           <figure>
             <img
               src="https://t3.ftcdn.net/jpg/00/42/87/12/240_F_42871201_ZnkmmVDckE54IrS6y0S13crH1S6Mgha5.jpg"
               alt="Background Image"
             />
           </figure>
-          <div className="card-body">
+          <div className="card-body p-0">
             <div>
               {email === user?.email && (
                 <button
@@ -96,14 +101,34 @@ const ViewMatches = ({ match, fetchMatches }) => {
               <h1 className="text-cyan-200">{displayName}</h1>
             </div>
 
-            <h2 className="">
-              {team1} vs {team2}
-            </h2>
-            <div>
-              <p>
-                {batNow}: {teamTotal}/{teamWicket}
-              </p>
-            </div>
+            <section className="text-center mt-5">
+              <h2 className="">
+                <span className="text-sm">{team1}</span>{" "}
+                <span className="text-xs">vs</span>{" "}
+                <span className="text-sm">{team2}</span>
+              </h2>
+              <div className="">
+                <p className="text-sm py-1">
+                  {batNow}: {teamTotal}/{teamWicket}
+                </p>
+                <p>
+                  <>
+                    <h1 className="text-[10px]">
+                      {target &&
+                      target > teamTotal &&
+                      teamWicket < 10 &&
+                      parseInt(totalOver) > teamOver
+                        ? `${batNow} need ${remaining} runs to win.`
+                        : target < teamTotal
+                        ? `${batNow} win by ${remainingWicket} wickets`
+                        : teamWicket === 10 || parseInt(totalOver) === teamOver
+                        ? `${batNow} lose by ${remaining - 1} runs`
+                        : ""}
+                    </h1>
+                  </>
+                </p>
+              </div>
+            </section>
           </div>
         </div>
       </Link>
