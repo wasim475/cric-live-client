@@ -5,21 +5,21 @@ import { stateInfo } from "./StateProvider";
 export const handlesInfo = createContext(null);
 
 const HandleProvider = ({ children }) => {
-  const [singleMatchInfo, setSingleMatchInfo] = useState(() => {
-    // Retrieve from local storage on initial render
-    const savedMatch = localStorage.getItem("singleMatchInfo");
-    return savedMatch ? JSON.parse(savedMatch) : null;
-  });
+  // const [singleMatchId, setsingleMatchId] = useState(() => {
+  //   // Retrieve from local storage on initial render
+  //   const savedMatch = localStorage.getItem("singleMatchId");
+  //   return savedMatch ? JSON.parse(savedMatch) : null;
+  // });
 
-  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket } =
+  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket , singleMatchId} =
     useContext(stateInfo);
 
-  const handleSingleMatch = (match) => {
-    setSingleMatchInfo(match);
-    // console.log(singleMatchInfo);
-    // Save to local storage
-    localStorage.setItem("singleMatchInfo", JSON.stringify(match));
-  };
+  // const handleSingleMatch = (match) => {
+  //   setsingleMatchId(match);
+  //   // console.log(singleMatchId);
+  //   // Save to local storage
+  //   localStorage.setItem("singleMatchId", JSON.stringify(match));
+  // };
 
   /* ===========================================
   Runs Handle start
@@ -183,13 +183,13 @@ const HandleProvider = ({ children }) => {
   Runs Handle end 
  =================================================== */
 
-  // Keep localStorage in sync with singleMatchInfo
+  // Keep localStorage in sync with singleMatchId
 
   useEffect(() => {
-    if (singleMatchInfo) {
-      localStorage.setItem("singleMatchInfo", JSON.stringify(singleMatchInfo));
+    if (singleMatchId) {
+      localStorage.setItem("singleMatchId", JSON.stringify(singleMatchId));
     }
-  }, [singleMatchInfo]);
+  }, [singleMatchId]);
 
   const handleStrikeChange = (matchId, batterId) => {
     fetch(
@@ -211,9 +211,6 @@ const HandleProvider = ({ children }) => {
   };
 
   const info = {
-    handleSingleMatch,
-    singleMatchInfo,
-
     // handle runs
     handleOne,
     handleTwo,

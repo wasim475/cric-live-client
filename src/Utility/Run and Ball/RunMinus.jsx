@@ -4,7 +4,7 @@ import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 
 const RunMinus = () => {
-  const { singleMatchInfo } = useContext(handlesInfo);
+  // const { singleMatchId } = useContext(handlesInfo);
   const { singleMatchData, activeBatters } = useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
 

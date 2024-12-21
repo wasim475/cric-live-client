@@ -4,10 +4,11 @@ import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 
 const Extra = () => {
-  const { singleMatchData } = useContext(stateInfo);
-  const { singleMatchInfo } = useContext(handlesInfo);
+  const { singleMatchData,singleMatchId } = useContext(stateInfo);
+  // const { singleMatchId } = useContext(handlesInfo);
   const { teamTotal } = singleMatchData;
   const { fetchBatterData } = useContext(fetchInfo);
+  // const { singleMatchId } = useContext(stateInfo);
 
   const handleWide = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
@@ -280,85 +281,85 @@ const Extra = () => {
   return (
     <div className="grid grid-cols-4 gap-2">
       <button
-        onClick={() => handleWide(teamTotal, singleMatchInfo)}
+        onClick={() => handleWide(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg"
       >
         Wd
       </button>
       <button
-        onClick={() => handleWide2(teamTotal, singleMatchInfo)}
+        onClick={() => handleWide2(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
         Wd-2
       </button>
       <button
-        onClick={() => handleWide3(teamTotal, singleMatchInfo)}
+        onClick={() => handleWide3(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
         Wd-3
       </button>
       <button
-        onClick={() => handleWide4(teamTotal, singleMatchInfo)}
+        onClick={() => handleWide4(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
         Wd-4
       </button>
       <button
-        onClick={() => handleWide5(teamTotal, singleMatchInfo)}
+        onClick={() => handleWide5(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
         Wd-5
       </button>{" "}
       <button
-        onClick={() => handleNoBall(teamTotal, singleMatchInfo)}
+        onClick={() => handleNoBall(teamTotal, singleMatchId)}
         className="bg-red-300 px-2 py-1 rounded-lg "
       >
         NB
       </button>
       <button
-        onClick={() => handleLegBye(teamTotal, singleMatchInfo)}
+        onClick={() => handleLegBye(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         1LB
       </button>
       <button
-        onClick={() => handleLegBye2(teamTotal, singleMatchInfo)}
+        onClick={() => handleLegBye2(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         2LB
       </button>
       <button
-        onClick={() => handleLegBye3(teamTotal, singleMatchInfo)}
+        onClick={() => handleLegBye3(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         3LB
       </button>
       <button
-        onClick={() => handleLegBye4(teamTotal, singleMatchInfo)}
+        onClick={() => handleLegBye4(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         4LB
       </button>
       <button
-        onClick={() => handleBye(teamTotal, singleMatchInfo)}
+        onClick={() => handleBye(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         1Bye
       </button>
       <button
-        onClick={() => handleBye2(teamTotal, singleMatchInfo)}
+        onClick={() => handleBye2(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         2Bye
       </button>
       <button
-        onClick={() => handleBye3(teamTotal, singleMatchInfo)}
+        onClick={() => handleBye3(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         3Bye
       </button>
       <button
-        onClick={() => handleBye4(teamTotal, singleMatchInfo)}
+        onClick={() => handleBye4(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         4Bye

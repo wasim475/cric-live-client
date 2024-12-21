@@ -4,10 +4,11 @@ import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from "../../provider/StateProvider";
 
 const ExtraMinus = () => {
-  const { singleMatchData } = useContext(stateInfo);
-  const { singleMatchInfo } = useContext(handlesInfo);
+  const { singleMatchData, singleMatchId } = useContext(stateInfo);
+  // const { singleMatchId } = useContext(handlesInfo);
   const { teamTotal } = singleMatchData;
   const { fetchBatterData } = useContext(fetchInfo);
+   // const { singleMatchId } = useContext(stateInfo);
 
   const handleMinusWide = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
@@ -280,85 +281,85 @@ const ExtraMinus = () => {
   return (
     <div className="grid grid-cols-4 gap-2">
       <button
-        onClick={() => handleMinusWide(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusWide(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg"
       >
         Wd
       </button>
       <button
-        onClick={() => handleMinusWide2(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusWide2(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-2
       </button>
       <button
-        onClick={() => handleMinusWide3(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusWide3(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-3
       </button>
       <button
-        onClick={() => handleMinusWide4(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusWide4(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-4
       </button>
       <button
-        onClick={() => handleMinusWide5(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusWide5(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-5
       </button>{" "}
       <button
-        onClick={() => handleMinusNoBall(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusNoBall(teamTotal, singleMatchId)}
         className="bg-red-300 px-2 py-1 text-white  rounded-lg "
       >
         NB
       </button>
       <button
-        onClick={() => handleMinusLegBye(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusLegBye(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 text-white  py-1 rounded-lg  "
       >
         1LB
       </button>
       <button
-        onClick={() => handleMinusLegBye2(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusLegBye2(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         2LB
       </button>
       <button
-        onClick={() => handleMinusLegBye3(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusLegBye3(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         3LB
       </button>
       <button
-        onClick={() => handleMinusLegBye4(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusLegBye4(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         4LB
       </button>{" "}
       <button
-        onClick={() => handleMinusBye(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusBye(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white  rounded-lg  "
       >
         1Bye
       </button>
       <button
-        onClick={() => handleMinusBye2(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusBye2(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 text-white  py-1 rounded-lg  "
       >
         2Bye
       </button>
       <button
-        onClick={() => handleMinusBye3(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusBye3(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white  rounded-lg  "
       >
         3Bye
       </button>
       <button
-        onClick={() => handleMinusBye4(teamTotal, singleMatchInfo)}
+        onClick={() => handleMinusBye4(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white rounded-lg  "
       >
         4Bye

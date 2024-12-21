@@ -9,8 +9,8 @@ import RunMinus from "./RunMinus";
 import RunPlus from "./RunPlus";
 
 const RunandBall = () => {
-  const { singleMatchInfo } = useContext(handlesInfo);
-  const { singleMatchData, activeBatters } = useContext(stateInfo);
+  // const { singleMatchId } = useContext(handlesInfo);
+  const { singleMatchData, activeBatters,singleMatchId } = useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
 
   const { team1, team2, batNow, teamBall, totalOver, _id, teamTotal } =
@@ -188,7 +188,7 @@ const RunandBall = () => {
                       <button
                         key={index}
                         onClick={() =>
-                          handleStrikeChange(singleMatchInfo, batter.id)
+                          handleStrikeChange(singleMatchId, batter.id)
                         }
                         className={`${
                           batter.strike

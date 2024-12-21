@@ -13,8 +13,10 @@ const FetchProvider = ({ children }) => {
     setBowlers,
     matches,
     setMatches,
+    singleMatchId
   } = useContext(stateInfo);
-  const { singleMatchInfo } = useContext(handlesInfo); //only id is here
+ 
+ 
 
   const fetchMatches = () => {
     setLoading(true);
@@ -27,7 +29,7 @@ const FetchProvider = ({ children }) => {
   };
   const fetchBatterData = () => {
     // setLoading(true)
-    fetch(`https://cric-server.vercel.app/matches/${singleMatchInfo}`)
+    fetch(`https://cric-server.vercel.app/matches/${singleMatchId}`)
       .then((res) => res.json())
       .then((data) => {
         setBatters(data?.batter?.reverse());

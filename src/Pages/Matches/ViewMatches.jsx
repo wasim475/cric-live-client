@@ -59,7 +59,11 @@ const ViewMatches = ({ match, fetchMatches }) => {
   // console.log(match)
   return (
     <>
-      <Link onClick={() => handleSingleMatch(_id)} to={`/matches/${match._id}`}>
+      <Link 
+      // onClick={() => handleSingleMatch(_id)} 
+      to={`/matches/${match._id}`}
+      // state={{ matchId: match._id }}
+      >
         <div className="card bg-base-100 image-full w-52 shadow-xl">
           <figure>
             <img

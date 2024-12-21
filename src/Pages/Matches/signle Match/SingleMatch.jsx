@@ -10,13 +10,18 @@ import AddBatter from "./Add Batter/AddBatter";
 import ShowBatter from "./Add Batter/ShowBatter";
 import AddBowler from "./Add Bowler/AddBowler";
 import ShowBowler from "./Add Bowler/ShowBowler";
+import { useLocation, useParams } from 'react-router';
+import Copy from '../../../Utility/CopyUrl/Copy';
 
 const SingleMatch = () => {
+  const location = useLocation()
   const { user, loading } = useContext(AuthContex);
-  const { matches, setMatches } = useContext(stateInfo);
-
-  const { singleMatchInfo } = useContext(handlesInfo); //only id is here
-  // const { team1, team2, batNow, totalOver, _id, teamTotal,teamOver,teamWicket } = singleMatchInfo;
+  const { matches, setMatches, singleMatchId, setSingleMatchId, setCopyValue } = useContext(stateInfo);
+  // console.log()
+  setCopyValue(`https://criclive1.netlify.app${location.pathname}`)
+  const { id } = useParams();
+  setSingleMatchId(id)
+ 
   const {
     batters,
     setBatters,
@@ -29,7 +34,7 @@ const SingleMatch = () => {
 
   useEffect(() => {
     fetchBatterData();
-  }, [singleMatchInfo]);
+  }, [singleMatchId]);
   const {
     email,
     team1,
@@ -86,8 +91,9 @@ const SingleMatch = () => {
               {" "}
               <span className="text-xl font-bold">{team1}</span>
               <span> vs </span>
-              <span className="text-xl font-bold">{team2}</span>
+              <span className="text-xl font-bold">{team2}</span> <span><Copy/></span>
             </h1>
+            
           </section>
 
           <section>
@@ -124,13 +130,14 @@ const SingleMatch = () => {
             </div>
           </section>
           <h1 className="flex gap-x-1 overflow-hidden max-w-full text-[10px]">
+            <span>Last-Balls:</span>
             {reverseLastTen?.map((lastOne, index) =>
               lastOne === "w" ? (
                 <span
                   key={index}
                   onClick={() =>
                     email === user?.email &&
-                    handleLastTen(singleMatchInfo, index, lastOne)
+                    handleLastTen(singleMatchId, index, lastOne)
                   }
                   className="text-red-950 font-bold"
                 >
@@ -141,7 +148,7 @@ const SingleMatch = () => {
                   key={index}
                   onClick={() =>
                     email === user?.email &&
-                    handleLastTen(singleMatchInfo, index, lastOne)
+                    handleLastTen(singleMatchId, index, lastOne)
                   }
                   className="text-pink-500 font-extrabold"
                 >
@@ -152,7 +159,7 @@ const SingleMatch = () => {
                   key={index}
                   onClick={() =>
                     email === user?.email &&
-                    handleLastTen(singleMatchInfo, index, lastOne)
+                    handleLastTen(singleMatchId, index, lastOne)
                   }
                   className="text-orange-600 font-extrabold"
                 >
@@ -163,7 +170,7 @@ const SingleMatch = () => {
                   key={index}
                   onClick={() =>
                     email === user?.email &&
-                    handleLastTen(singleMatchInfo, index, lastOne)
+                    handleLastTen(singleMatchId, index, lastOne)
                   }
                   className="text-yellow-600 font-extrabold text-sm flex -mt-1"
                 >
@@ -175,7 +182,7 @@ const SingleMatch = () => {
                   className="bg-red-black"
                   onClick={() =>
                     email === user?.email &&
-                    handleLastTen(singleMatchInfo, index, lastOne)
+                    handleLastTen(singleMatchId, index, lastOne)
                   }
                 >
                   {lastOne}
@@ -213,7 +220,7 @@ const SingleMatch = () => {
                 {activeBatters?.map((batter, index) => (
                   <ShowBatter
                     batter={batter}
-                    matchId={singleMatchInfo}
+                    matchId={singleMatchId}
                     singleMatchData={singleMatchData}
                     fetchBatterData={fetchBatterData}
                     key={index}
@@ -252,7 +259,7 @@ const SingleMatch = () => {
                 {bowlers?.map((bowler, index) => (
                   <ShowBowler
                     bowler={bowler}
-                    matchId={singleMatchInfo}
+                    matchId={singleMatchId}
                     singleMatchData={singleMatchData}
                     fetchBatterData={fetchBatterData}
                     key={index}
