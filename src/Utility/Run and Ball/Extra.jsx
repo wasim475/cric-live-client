@@ -1,35 +1,15 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
-import { stateInfo } from "../../provider/StateProvider";
 import { handlesInfo } from "../../provider/HandleProvide";
+import { stateInfo } from "../../provider/StateProvider";
 
 const Extra = () => {
   const { singleMatchData, singleMatchId } = useContext(stateInfo);
   // const { singleMatchId } = useContext(handlesInfo);
   const { teamTotal } = singleMatchData;
   const { fetchBatterData } = useContext(fetchInfo);
-  const {handleWide}= useContext(handlesInfo)
-  // const { singleMatchId } = useContext(stateInfo);
+  const { handleWide } = useContext(handlesInfo);
 
-  // const handleWide = (total, id) => {
-  //   fetch(`https://cric-server.vercel.app/extra/${id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify({ incrementValue: 1, extra: "wide" }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log("Response from backend:", data);
-  //       if (data.modifiedCount > 0) {
-  //         fetchBatterData();
-  //       } else {
-  //         console.log("No changes made.");
-  //       }
-  //     })
-  //     .catch((error) => console.error("Error updating teamTotal:", error));
-  // };
   const handleWide2 = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
@@ -68,25 +48,7 @@ const Extra = () => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
-  const handleWide4 = (total, id) => {
-    fetch(`https://cric-server.vercel.app/extra/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ incrementValue: 4, extra: "wide" }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("Response from backend:", data);
-        if (data.modifiedCount > 0) {
-          fetchBatterData();
-        } else {
-          console.log("No changes made.");
-        }
-      })
-      .catch((error) => console.error("Error updating teamTotal:", error));
-  };
+
   const handleWide5 = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
@@ -126,6 +88,7 @@ const Extra = () => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
+ 
 
   const handleLegBye = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
@@ -165,25 +128,7 @@ const Extra = () => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
-  const handleLegBye3 = (total, id) => {
-    fetch(`https://cric-server.vercel.app/extra/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ incrementValue: 3, extra: "legBye" }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("Response from backend:", data);
-        if (data.modifiedCount > 0) {
-          fetchBatterData();
-        } else {
-          console.log("No changes made.");
-        }
-      })
-      .catch((error) => console.error("Error updating teamTotal:", error));
-  };
+
   const handleLegBye4 = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
@@ -241,25 +186,7 @@ const Extra = () => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
-  const handleBye3 = (total, id) => {
-    fetch(`https://cric-server.vercel.app/extra/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ incrementValue: 3, extra: "bye" }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log("Response from backend:", data);
-        if (data.modifiedCount > 0) {
-          fetchBatterData();
-        } else {
-          console.log("No changes made.");
-        }
-      })
-      .catch((error) => console.error("Error updating teamTotal:", error));
-  };
+
   const handleBye4 = (total, id) => {
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
@@ -294,12 +221,6 @@ const Extra = () => {
         Wd-3
       </button>
       <button
-        onClick={() => handleWide4(teamTotal, singleMatchId)}
-        className="bg-cyan-400 px-2 py-1 rounded-lg "
-      >
-        Wd-4
-      </button>
-      <button
         onClick={() => handleWide5(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
@@ -311,6 +232,7 @@ const Extra = () => {
       >
         NB
       </button>
+    
       <button
         onClick={() => handleLegBye(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
@@ -322,12 +244,6 @@ const Extra = () => {
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         2LB
-      </button>
-      <button
-        onClick={() => handleLegBye3(teamTotal, singleMatchId)}
-        className="bg-cyan-400 px-2 py-1 rounded-lg  "
-      >
-        3LB
       </button>
       <button
         onClick={() => handleLegBye4(teamTotal, singleMatchId)}
@@ -346,12 +262,6 @@ const Extra = () => {
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         2Bye
-      </button>
-      <button
-        onClick={() => handleBye3(teamTotal, singleMatchId)}
-        className="bg-cyan-400 px-2 py-1 rounded-lg  "
-      >
-        3Bye
       </button>
       <button
         onClick={() => handleBye4(teamTotal, singleMatchId)}

@@ -4,6 +4,7 @@ import { fetchInfo } from "../../provider/FetchProvider";
 import { stateInfo } from "../../provider/StateProvider";
 import Extra from "./Extra";
 import ExtraMinus from "./ExtraMinus";
+import NoballRun from "./ExtraMore";
 import RunMinus from "./RunMinus";
 import RunPlus from "./RunPlus";
 
@@ -13,8 +14,18 @@ const RunandBall = () => {
     useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
 
-  const { team1, team2, batNow, teamBall, totalOver, _id, teamTotal } =
-    singleMatchData;
+  const {
+    team1,
+    team2,
+    batNow,
+    teamBall,
+    totalOver,
+    _id,
+    teamTotal,
+    target,
+    teamWicket,
+    teamOver,
+  } = singleMatchData;
 
   // State for button position
   // const [position, setPosition] = useState({ top: "50%", left: "90%" });
@@ -62,7 +73,7 @@ const RunandBall = () => {
         <button
           className="bg-transparent border-pink-500 border-t-[1px] border-b-[1px] text-pink-500 rounded-l-box py-3 px-2 font-bold"
           onClick={() => document.getElementById("my_modal_5").showModal()}
-          disable
+          // disabled={ ( parseInt(totalOver) === teamOver || teamWicket===10)}
         >
           Controller
         </button>
@@ -108,6 +119,26 @@ const RunandBall = () => {
                     className="tab-content bg-base-100 border-base-300 rounded-box p-6"
                   >
                     <Extra />
+                  </div>
+                  <div
+                    role="tabpanel"
+                    className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+                  >
+                    <ExtraMinus />
+                  </div>
+
+                  <input
+                    type="radio"
+                    name="tabs_2"
+                    role="tab"
+                    className="tab"
+                    aria-label="Extra More"
+                  />
+                  <div
+                    role="tabpanel"
+                    className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+                  >
+                    <NoballRun />
                   </div>
                 </div>
 

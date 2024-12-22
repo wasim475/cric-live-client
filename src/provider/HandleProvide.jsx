@@ -183,8 +183,6 @@ const HandleProvider = ({ children }) => {
   Runs Handle end 
  =================================================== */
 
-
-
   const handleStrikeChange = (matchId, batterId) => {
     fetch(
       `https://cric-server.vercel.app/matches/${matchId}/batter/${batterId}/strike`,
@@ -233,7 +231,7 @@ const HandleProvider = ({ children }) => {
     handleSix,
     handleZero,
     handleOver,
-    handleWide
+    handleWide,
   };
 
   return <handlesInfo.Provider value={info}>{children}</handlesInfo.Provider>;

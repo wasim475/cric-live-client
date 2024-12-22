@@ -78,8 +78,9 @@ const SingleMatch = () => {
   useEffect(() => {
     fetchBatterData();
   }, [singleMatchId]);
-
-  console.log(teamOver === parseInt(totalOver));
+  
+// console.log(lastTen.includes("nb+"))
+  // console.log(teamOver === parseInt(totalOver));
 
   return (
     <main>
@@ -138,8 +139,8 @@ const SingleMatch = () => {
               <ScoreCard />
             </div>
           </section>
-          <h1 className="flex gap-x-1 overflow-hidden max-w-full text-[10px]">
-            <span>Last-Balls:</span>
+          <h1 className={`flex overflow-hidden max-w-full text-[10px]`}>
+            <span className='mr-1'>Last-Balls:</span>
             {reverseLastTen?.map((lastOne, index) =>
               lastOne === "w" ? (
                 <span
@@ -148,7 +149,7 @@ const SingleMatch = () => {
                     email === user?.email &&
                     handleLastTen(singleMatchId, index, lastOne)
                   }
-                  className="text-red-950 font-bold"
+                  className="text-red-950 font-bold mr-1"
                 >
                   {lastOne}
                 </span>
@@ -159,7 +160,7 @@ const SingleMatch = () => {
                     email === user?.email &&
                     handleLastTen(singleMatchId, index, lastOne)
                   }
-                  className="text-pink-500 font-extrabold"
+                  className="text-pink-500 font-extrabold mr-1"
                 >
                   {lastOne}
                 </span>
@@ -170,7 +171,7 @@ const SingleMatch = () => {
                     email === user?.email &&
                     handleLastTen(singleMatchId, index, lastOne)
                   }
-                  className="text-orange-600 font-extrabold"
+                  className="text-orange-600 font-extrabold mr-1"
                 >
                   {lastOne}
                 </span>
@@ -181,14 +182,25 @@ const SingleMatch = () => {
                     email === user?.email &&
                     handleLastTen(singleMatchId, index, lastOne)
                   }
-                  className="text-yellow-600 font-extrabold text-sm flex -mt-1"
+                  className="text-yellow-600 font-extrabold text-sm flex -mt-1 mr-1"
                 >
                   {lastOne}
                 </span>
-              ) : (
+              ) : lastOne === "nb+" ?
+              <span
+              key={index}
+              onClick={() =>
+                email === user?.email &&
+                handleLastTen(singleMatchId, index, lastOne)
+              }
+              className=""
+            >
+              {lastOne}
+            </span> 
+            :
                 <span
                   key={index}
-                  className="bg-red-black"
+                  className="bg-red-black mr-1"
                   onClick={() =>
                     email === user?.email &&
                     handleLastTen(singleMatchId, index, lastOne)
@@ -196,7 +208,7 @@ const SingleMatch = () => {
                 >
                   {lastOne}
                 </span>
-              )
+              
             )}
           </h1>
           {/* Batters */}

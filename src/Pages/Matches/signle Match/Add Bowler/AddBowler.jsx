@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { FaRegPlusSquare } from "react-icons/fa";
+import { LuBadgePlus } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { stateInfo } from "../../../../provider/StateProvider";
 
@@ -82,8 +82,8 @@ const AddBowler = ({ match, fetchBatterData }) => {
           htmlFor="my-drawer-4"
           className="font-bold drawer-button flex items-center"
         >
-          <span className="text-green-500 font-bold">
-            <FaRegPlusSquare />
+          <span className="text-gray-600 font-extrabold">
+            <LuBadgePlus />
           </span>
           Bowler
         </label>

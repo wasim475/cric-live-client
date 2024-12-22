@@ -25,7 +25,7 @@ const Copy = () => {
         <button> <MdContentCopy /> </button>
       </CopyToClipboard>
 
-      {copied && <span className='absolute' style={{ color: 'red' }}> Match Link Copied!</span>}
+      {copied && <span className='absolute' style={{ color: 'red' }}>Link Copied!</span>}
     </>
   );
 };

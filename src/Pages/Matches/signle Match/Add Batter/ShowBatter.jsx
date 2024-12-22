@@ -40,7 +40,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
         toast.error("Something went wrong! Please try again.");
       });
   };
-  console.log(batters);
+  // console.log(batters);
   const handleRunOut = (batterId) => {
     fetch(`https://cric-server.vercel.app/matches/${matchId}/${batterId}`, {
       method: "PUT", // Use uppercase "PUT" for better consistency
