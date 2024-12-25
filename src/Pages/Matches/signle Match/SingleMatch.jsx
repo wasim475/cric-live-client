@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router";
 import loader from "../../../assets/pic/loader.gif";
 import { AuthContex } from "../../../provider/AuthProvider";
@@ -14,14 +14,14 @@ import ShowBowler from "./Add Bowler/ShowBowler";
 
 const SingleMatch = () => {
   const location = useLocation();
-  const { user, loading } = useContext(AuthContex);
+  const { user, loading, setLoading } = useContext(AuthContex);
   const { matches, setMatches, singleMatchId, setSingleMatchId, setCopyValue } =
     useContext(stateInfo);
   // console.log()
   setCopyValue(`https://criclive1.netlify.app${location.pathname}`);
   const { id } = useParams();
-  setSingleMatchId(id);
-  // console.log("67663f280166a2ec477d2936", id)
+
+  setSingleMatchId(id)
 
   const {
     batters,
@@ -32,6 +32,7 @@ const SingleMatch = () => {
     activeBatters,
   } = useContext(stateInfo);
   const { fetchBatterData } = useContext(fetchInfo);
+// console.log(batters)
   const {
     email,
     team1,
@@ -74,13 +75,17 @@ const SingleMatch = () => {
 
   const remaining = target - teamTotal;
   const remainingWicket = 10 - teamWicket;
+  const openDrawerRef = useRef(null);
 
   useEffect(() => {
     fetchBatterData();
   }, [singleMatchId]);
   
-// console.log(lastTen.includes("nb+"))
-  // console.log(teamOver === parseInt(totalOver));
+  const handleBowlerEdit = (bowlerName)=>{
+    if (openDrawerRef.current) {
+      openDrawerRef.current();
+    }
+  }
 
   return (
     <main>
@@ -227,8 +232,8 @@ const SingleMatch = () => {
                       "Batter"
                     )}
                   </th>
-                  <th>Runs</th>
-                  <th>Balls</th>
+                  <th>R</th>
+                  <th>B</th>
                   <th>4s</th>
                   <th>6s</th>
                   <th>SR</th>
@@ -245,6 +250,7 @@ const SingleMatch = () => {
                     singleMatchData={singleMatchData}
                     fetchBatterData={fetchBatterData}
                     key={index}
+                    
                   />
                 ))}
               </tbody>
@@ -283,6 +289,7 @@ const SingleMatch = () => {
                     matchId={singleMatchId}
                     singleMatchData={singleMatchData}
                     fetchBatterData={fetchBatterData}
+                    handleBowlerEdit={handleBowlerEdit}
                     key={index}
                   />
                 ))}

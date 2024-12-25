@@ -12,6 +12,7 @@ const StateProvider = ({children}) => {
     const activeBatters = batters?.filter((batter) => batter.active === true);
     const [singleMatchId, setSingleMatchId]= useState(null)
     const [Copyvalue, setCopyValue] = useState('');
+    const[editInfo, setEditInfo]= useState(null)
     
     const info ={
         teamNames, 
@@ -32,7 +33,9 @@ const StateProvider = ({children}) => {
         singleMatchId, 
         setSingleMatchId,
         Copyvalue, 
-        setCopyValue
+        setCopyValue,
+        editInfo, 
+        setEditInfo
     }
   return (
     <stateInfo.Provider value={info}>

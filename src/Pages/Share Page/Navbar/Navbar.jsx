@@ -2,10 +2,12 @@ import { Link } from "react-router";
 import { MdOutlineSportsHandball } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContex } from "../../../provider/AuthProvider";
+import { stateInfo } from '../../../provider/StateProvider';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContex);
-  // console.log(user?.photoURL)
+  const { matches } =useContext(stateInfo);
+  const myMatches = matches?.filter((match)=> match?.email === user?.email)
 
   return (
     <nav className="flex justify-between mt-1">
@@ -18,7 +20,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex justify-center gap-x-5">
-        {user && <Link to={"/my-matches"}>My Matches</Link>}
+        {user && <Link to={"/my-matches"}>
+        My Matches <span className='bg-red-500 text-white rounded-lg text-xs px-1 absolute'>{myMatches.length >0 && myMatches?.length}</span>
+        
+        </Link>}
       </div>
 
       <div>

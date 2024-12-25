@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { VscTriangleLeft } from "react-icons/vsc";
+import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { AuthContex } from "../../../../provider/AuthProvider";
 import { stateInfo } from "../../../../provider/StateProvider";
@@ -11,6 +12,8 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
   const { user } = useContext(AuthContex);
   const { email } = singleMatchData;
   const [outOptins, setOutOptins] = useState(false);
+  const [updateName, setUpdateName] = useState(name);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const handleOut = (batterId) => {
     fetch(`https://cric-server.vercel.app/matches/${matchId}/${batterId}`, {
       method: "PUT", // Use uppercase "PUT" for better consistency
@@ -91,13 +94,83 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
       })
       .catch((err) => console.error(err));
   };
+
+  const handleBowlerEdit = (mId, batterId) => {
+    fetch(
+      `https://cric-server.vercel.app/matches/${mId}/updatebattername/${batterId}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ updateName }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          fetchBatterData();
+          setOpenEditModal(!openEditModal);
+        }
+      });
+  };
   return (
     <>
       <tr
         onClick={() => email === user?.email && handleStrikeChange(matchId, id)}
       >
         <th className="flex items-center gap-x-1">
-          {name}{" "}
+          {name}
+          <span>
+            {
+              user?.email === email && 
+              <>
+              
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setOpenEditModal(!openEditModal);
+                }}
+              >
+                <CiEdit />
+              </button>
+
+              {/* Modal Component */}
+              {openEditModal && (
+                <section
+                  className="rounded-lg bg-transparent w-full h-full flex justify-center"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <div className="modal-box flex w-60 flex-col items-center absolute top-1 left-5">
+                    {/* Close button */}
+                    <button
+                      className="btn btn-sm btn-circle btn-ghost absolute right-1 top-0"
+                      onClick={() => setOpenEditModal(!openEditModal)}
+                    >
+                      ✕
+                    </button>
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      value={updateName}
+                      onChange={(e) => setUpdateName(e.target.value)} // Update state on change
+                      className="input input-bordered w-full max-w-xs"
+                    />
+                    <button
+                      className="bg-green-500 mt-2 px-5 rounded-lg py-2 text-white"
+                      onClick={() => handleBowlerEdit(matchId, id)}
+                    >
+                      Update
+                    </button>
+                  </div>
+                </section>
+              )}
+            </>
+            }
+          </span>
           <span className="text-green-500 text-lg">
             {batter.strike && <VscTriangleLeft />}
           </span>

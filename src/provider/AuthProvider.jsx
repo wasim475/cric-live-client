@@ -29,7 +29,7 @@ const AuthProvider = ({children}) => {
 
    
  
-
+// console.log(location.state)
   
   
 
@@ -38,9 +38,8 @@ const AuthProvider = ({children}) => {
         .then((result)=>{
             if(result.user){
                 toast('Login Successfull.')
-                Navigate("/")
-            } else{
-                toast("You are in suspense because of Criclive.")
+                Navigate(location?.state ? location.state : "/");
+                // Navigate("/")
             }
         })
     }

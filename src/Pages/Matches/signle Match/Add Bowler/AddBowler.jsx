@@ -3,7 +3,7 @@ import { LuBadgePlus } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { stateInfo } from "../../../../provider/StateProvider";
 
-const AddBowler = ({ match, fetchBatterData }) => {
+const AddBowler = ({ match, fetchBatterData,handleBowlerEdit }) => {
   const inputRef = useRef(null); // Ref for the input field
   const drawerCheckboxRef = useRef(null); // Ref for the drawer toggle checkbox
   const { _id } = match;
@@ -27,6 +27,17 @@ const AddBowler = ({ match, fetchBatterData }) => {
       drawerCheckbox?.removeEventListener("change", handleFocus);
     };
   }, []);
+
+  //   useEffect(() => {
+  //   if (handleBowlerEdit && typeof handleBowlerEdit === "function") {
+  //     handleBowlerEdit.current = () => {
+  //       if (drawerCheckboxRef.current) {
+  //         drawerCheckboxRef.current.checked = true; // Open the drawer
+  //       }
+  //     };
+  //   }
+  // }, [handleBowlerEdit]);
+
 
   const bowlerInfo = {
     type: "bowler",
@@ -69,6 +80,7 @@ const AddBowler = ({ match, fetchBatterData }) => {
       .finally(() => setLoading(false));
   };
 
+
   return (
     <div className="drawer">
       <input
@@ -94,7 +106,7 @@ const AddBowler = ({ match, fetchBatterData }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content w-60 p-4 mt-10">
+        <ul className="menu bg-base-200 text-base-content w-60 p-4 mt-10 rounded-r-lg">
           <li>
             <input
               ref={inputRef} // Attach ref to input field for focus control

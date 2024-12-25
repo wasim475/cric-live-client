@@ -93,7 +93,7 @@ const AddBatter = ({ match, fetchBatterData }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content mt-10 w-60 p-4">
+        <ul className="menu bg-base-200 text-base-content mt-10 w-60 p-4 rounded-r-lg">
           {/* Sidebar content */}
           <li>
             <input
