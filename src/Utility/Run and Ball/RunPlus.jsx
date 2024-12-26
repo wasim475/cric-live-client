@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { fetchInfo } from '../../provider/FetchProvider';
 import { handlesInfo } from "../../provider/HandleProvide";
 import { stateInfo } from '../../provider/StateProvider';
-
+import { motion } from "framer-motion";
 const RunPlus = () => {
   // const { singleMatchId } = useContext(handlesInfo);
   const { singleMatchData, activeBatters } = useContext(stateInfo);
@@ -19,67 +19,81 @@ const RunPlus = () => {
     handleZero,
     handleOver,
     handleMOver,
-    handleWide
+    handleWide,
+    handleNoBall
   } = useContext(handlesInfo);
   return (
     <>
       <section className='grid grid-cols-4 gap-2'>
-        <button
-          onClick={() => handleOne(teamTotal, _id, teamBall, fetchBatterData)}
-          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
-        >
-          1
-        </button>
-        <button
-          onClick={() => handleTwo(teamTotal, _id, fetchBatterData)}
-          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
-        >
-          2
-        </button>
-        <button
-          onClick={() => handleThree(teamTotal, _id, fetchBatterData)}
-          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
-        >
-          3
-        </button>
-        <button
-          onClick={() => handleFour(teamTotal, _id, fetchBatterData)}
-          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
-        >
-          4
-        </button>
-        <button
+        
+        
+       
+       
+        <motion.button
+         
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleSix(teamTotal, _id, fetchBatterData)}
           className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
         >
           6
-        </button>
-    
-        <button
+        </motion.button>
+        <motion.button
+        whileTap={{ scale: 0.9 }}
+          onClick={() => handleFour(teamTotal, _id, fetchBatterData)}
+          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
+        >
+          4
+        </motion.button>
+        <motion.button
+        whileTap={{ scale: 0.9 }}
+          onClick={() => handleTwo(teamTotal, _id, fetchBatterData)}
+          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
+        >
+          2
+        </motion.button>
+        <motion.button
+        whileTap={{ scale: 0.9 }}
+          onClick={() => handleOne(teamTotal, _id, teamBall, fetchBatterData)}
+          className="bg-green-600 px-6 py-3 rounded-lg text-white font-bold "
+        >
+          1
+        </motion.button>
+       
+        <motion.button
+        whileTap={{ scale: 0.9 }}
           onClick={() => handleOver(totalOver, _id, fetchBatterData)}
           className="bg-violet-500 px-2 py-3 rounded-lg text-white font-bold  "
         >
           Over
-        </button>
+        </motion.button>
+        <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => handleNoBall(teamTotal,  _id, fetchBatterData)}
+        className="bg-orange-500 text-white font-bold px-2 py-1 rounded-lg "
+      >
+        No Ball
+      </motion.button>
         {/* Maiden over */}
-        {/* <button
+        {/* <motion.button
           onClick={() => handleMOver(totalOver, _id, fetchBatterData)}
           className="bg-violet-500  py-3 rounded-lg text-white font-bold  "
         >
           M.Ov
-        </button> */}
-        <button
+        </motion.button> */}
+        <motion.button
+        whileTap={{ scale: 0.9 }}
         onClick={() => handleWide(teamTotal, _id, fetchBatterData)}
         className="bg-cyan-400 px-0 py-1 text-white font-bold rounded-lg"
       >
         Wide
-      </button>
-        <button
+      </motion.button>
+        <motion.button
+        whileTap={{ scale: 0.9 }}
           onClick={() => handleZero(teamTotal, _id, fetchBatterData)}
           className="bg-blue-600 px-4 py-3 rounded-lg text-white font-bold "
         >
           Dot
-        </button>
+        </motion.button>
       </section>
     </>
   );

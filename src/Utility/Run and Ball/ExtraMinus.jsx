@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { stateInfo } from "../../provider/StateProvider";
-
+import { motion } from "framer-motion";
 const ExtraMinus = () => {
   const { singleMatchData, singleMatchId } = useContext(stateInfo);
   // const { singleMatchId } = useContext(handlesInfo);
@@ -279,90 +279,104 @@ const ExtraMinus = () => {
   };
   return (
     <div className="grid grid-cols-4 gap-2">
-      <button
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusWide(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg"
       >
         Wd
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusWide2(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-2
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusWide3(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-3
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusWide4(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-4
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusWide5(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg "
       >
         Wd-5
-      </button>{" "}
-      <button
+      </motion.button>{" "}
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusNoBall(teamTotal, singleMatchId)}
         className="bg-red-300 px-2 py-1 text-white  rounded-lg "
       >
         NB
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusLegBye(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 text-white  py-1 rounded-lg  "
       >
         1LB
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusLegBye2(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         2LB
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusLegBye3(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         3LB
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusLegBye4(teamTotal, singleMatchId)}
         className="bg-red-400 text-white  px-2 py-1 rounded-lg  "
       >
         4LB
-      </button>{" "}
-      <button
+      </motion.button>{" "}
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusBye(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white  rounded-lg  "
       >
         1Bye
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusBye2(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 text-white  py-1 rounded-lg  "
       >
         2Bye
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusBye3(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white  rounded-lg  "
       >
         3Bye
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleMinusBye4(teamTotal, singleMatchId)}
         className="bg-red-400 px-2 py-1 text-white rounded-lg  "
       >
         4Bye
-      </button>
+      </motion.button>
     </div>
   );
 };

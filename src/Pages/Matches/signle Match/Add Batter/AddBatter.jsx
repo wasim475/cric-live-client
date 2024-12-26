@@ -7,8 +7,8 @@ const AddBatter = ({ match, fetchBatterData }) => {
   const { _id } = match;
   const [batter, setBatter] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state for feedback
-  const { batters, setBatters } = useContext(stateInfo);
-
+  const { batters, setBatters,bowlers } = useContext(stateInfo);
+ 
   const drawerCheckboxRef = useRef(null); // Ref for the drawer checkbox
   const inputRef = useRef(null); // Ref for the input field
 
@@ -36,6 +36,7 @@ const AddBatter = ({ match, fetchBatterData }) => {
     fours: 0,
     sixes: 0,
     stike: false,
+    outBy: "",
     sr: 0,
     active: true,
   };

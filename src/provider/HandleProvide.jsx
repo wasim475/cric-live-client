@@ -134,6 +134,28 @@ const HandleProvider = ({ children }) => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
+  const handleFive = (totalRun, _id, fetchBatterData) => {
+    const matchId = _id; // Match ID to be sent
+
+    fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ incrementValue: 5, ballIncrement: 1 }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Response from backend:", data);
+        if (data.modifiedCount > 0) {
+          // toast(`Run Incremented`);
+          fetchBatterData();
+        } else {
+          console.log("No changes made.");
+        }
+      })
+      .catch((error) => console.error("Error updating teamTotal:", error));
+  };
 
   const handleZero = (totalRun, _id, fetchBatterData) => {
     const matchId = _id; // Match ID to be sent
@@ -221,6 +243,25 @@ const HandleProvider = ({ children }) => {
       })
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
+  const handleNoBall = (total, id,fetchBatterData) => {
+    fetch(`https://cric-server.vercel.app/extra/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ incrementValue: 1, extra: "noBall" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Response from backend:", data);
+        if (data.modifiedCount > 0) {
+          fetchBatterData();
+        } else {
+          console.log("No changes made.");
+        }
+      })
+      .catch((error) => console.error("Error updating teamTotal:", error));
+  };
 
   const info = {
     // handle runs
@@ -232,6 +273,8 @@ const HandleProvider = ({ children }) => {
     handleZero,
     handleOver,
     handleWide,
+    handleFive,
+    handleNoBall
   };
 
   return <handlesInfo.Provider value={info}>{children}</handlesInfo.Provider>;

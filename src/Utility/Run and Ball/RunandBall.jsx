@@ -2,11 +2,13 @@ import { useContext } from "react";
 import AddBatter from "../../Pages/Matches/signle Match/Add Batter/AddBatter";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { stateInfo } from "../../provider/StateProvider";
+import { motion } from "framer-motion";
 import Extra from "./Extra";
 import ExtraMinus from "./ExtraMinus";
 import NoballRun from "./ExtraMore";
 import RunMinus from "./RunMinus";
 import RunPlus from "./RunPlus";
+import More from './More';
 
 const RunandBall = () => {
   // const { singleMatchId } = useContext(handlesInfo);
@@ -184,7 +186,7 @@ const RunandBall = () => {
                   />
                   <div
                     role="tabpanel"
-                    className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+                    className="tab-content bg-gray-50 border-base-300 rounded-box p-6"
                   >
                     <RunPlus />
                   </div>
@@ -194,14 +196,14 @@ const RunandBall = () => {
                     name="my_tabs_2"
                     role="tab"
                     className="tab"
-                    aria-label="Tab 3"
-                    disabled
+                    aria-label="More"
+                    
                   />
                   <div
                     role="tabpanel"
                     className="tab-content bg-base-100 border-base-300 rounded-box p-6"
                   >
-                    Tab content 3
+                    <More/>
                   </div>
                 </div>
 
@@ -216,7 +218,8 @@ const RunandBall = () => {
                   <h1>Batting Pair</h1>
                   <div className="flex gap-x-2 mt-1">
                     {activeBatters?.map((batter, index) => (
-                      <button
+                      <motion.button
+                      whileTap={{ scale: 0.9 }}
                         key={index}
                         onClick={() =>
                           handleStrikeChange(singleMatchId, batter.id)
@@ -231,7 +234,7 @@ const RunandBall = () => {
                         <span className="text-xl">
                           {batter.strike && "*"}
                         </span>{" "}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </section>
@@ -241,6 +244,7 @@ const RunandBall = () => {
               </div>
 
               <input
+              disabled
                 type="radio"
                 name="my_tabs_1"
                 role="tab"

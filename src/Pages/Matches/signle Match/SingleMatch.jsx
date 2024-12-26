@@ -145,7 +145,7 @@ const SingleMatch = () => {
             </div>
           </section>
           <h1 className={`flex overflow-hidden max-w-full text-[10px]`}>
-            <span className='mr-1'>Last-Balls:</span>
+            <span className='mr-1'>LastBalls:</span>
             {reverseLastTen?.map((lastOne, index) =>
               lastOne === "w" ? (
                 <span

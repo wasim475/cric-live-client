@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { stateInfo } from "../../provider/StateProvider";
-
+import { motion } from "framer-motion";
 const RunMinus = () => {
   // const { singleMatchId } = useContext(handlesInfo);
   const { singleMatchData, activeBatters } = useContext(stateInfo);
@@ -150,55 +150,63 @@ const RunMinus = () => {
   return (
     <>
       <section className="grid grid-cols-4 gap-2">
-        <button
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusOne(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "
         >
           -1
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusTwo(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "
         >
           -2
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusThree(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "
         >
           -3
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusFour(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "
         >
           -4
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusSix(teamTotal, _id)}
           className="bg-red-500 px-6 py-3 rounded-lg text-white font-bold "
         >
           -6
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusZero(teamTotal, _id)}
           className="bg-blue-200 px-3 py-3 rounded-lg text-red-500 font-bold "
         >
           -Dot
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusOver(totalOver, _id)}
           className="bg-violet-200 px-4 py-3 rounded-lg text-red-500 font-bold  "
         >
           -Ov
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+         whileTap={{ scale: 0.9 }}
           onClick={() => handleMinusMOver(totalOver, _id)}
           className="bg-violet-200 px-2 py-3 rounded-lg text-red-500 font-bold  "
         >
           -MOv
-        </button>
+        </motion.button>
       </section>
     </>
   );

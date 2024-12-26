@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { stateInfo } from "../../provider/StateProvider";
-
+import { motion } from "framer-motion";
 const ExtraMore = () => {
   const { singleMatchData, singleMatchId } = useContext(stateInfo);
   const { teamTotal } = singleMatchData;
@@ -85,31 +85,35 @@ const ExtraMore = () => {
 
   return (
     <div className="grid grid-cols-4 gap-2">
-      <button
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleWide4(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg "
       >
         Wd-4
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleLegBye3(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         3LB
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleBye3(teamTotal, singleMatchId)}
         className="bg-cyan-400 px-2 py-1 rounded-lg  "
       >
         3Bye
-      </button>
+      </motion.button>
 
-      <button
+      <motion.button
+       whileTap={{ scale: 0.9 }}
         onClick={() => handleNoBallThree(teamTotal, singleMatchId)}
         className="bg-red-300 px-2 py-1 rounded-lg "
       >
         NB+3
-      </button>
+      </motion.button>
     </div>
   );
 };

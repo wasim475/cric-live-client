@@ -4,16 +4,19 @@ import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { AuthContex } from "../../../../provider/AuthProvider";
 import { stateInfo } from "../../../../provider/StateProvider";
-
+import { motion } from "framer-motion";
 const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
   let { name, run, ball, fours, sixes, sr, id, active } = batter;
-  const { batters } = useContext(stateInfo);
+  const { batters, bowlers } = useContext(stateInfo);
   const strikeRate = ball > 0 ? parseFloat(((run * 100) / ball).toFixed(1)) : 0;
   const { user } = useContext(AuthContex);
   const { email } = singleMatchData;
   const [outOptins, setOutOptins] = useState(false);
   const [updateName, setUpdateName] = useState(name);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const currentBowler = bowlers?.find((bowler)=>bowler?.strike)
+  const outBy = currentBowler?.name
+  console.log(outBy)
   const handleOut = (batterId) => {
     fetch(`https://cric-server.vercel.app/matches/${matchId}/${batterId}`, {
       method: "PUT", // Use uppercase "PUT" for better consistency
@@ -23,6 +26,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
       body: JSON.stringify({
         active: false, // Mark the batter as inactive
         increamentWicket: 1, // Increment the wicket count
+        outBy: outBy,
       }),
     })
       .then((res) => res.json())
@@ -125,7 +129,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
             {
               user?.email === email && 
               <>
-              
+              {/* Button to open the modal */}
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -135,40 +139,50 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
               >
                 <CiEdit />
               </button>
-
+            
               {/* Modal Component */}
               {openEditModal && (
-                <section
-                  className="rounded-lg bg-transparent w-full h-full flex justify-center"
+                <div
+                  className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center"
                   onClick={(e) => {
-                    e.stopPropagation();
-                  }}
+                    e.stopPropagation()
+                    setOpenEditModal(false)
+                  }} // Close modal on overlay click
                 >
-                  <div className="modal-box flex w-60 flex-col items-center absolute top-1 left-5">
+                  <div
+                    className="modal-box bg-white rounded-lg p-5 w-80 relative shadow-lg"
+                    onClick={(e) => e.stopPropagation()} // Prevent overlay click from closing modal
+                  >
                     {/* Close button */}
                     <button
-                      className="btn btn-sm btn-circle btn-ghost absolute right-1 top-0"
+                      className="btn btn-sm btn-circle btn-ghost absolute top-0 right-0 bg-red-500 text-white font-bold"
                       onClick={() => setOpenEditModal(!openEditModal)}
                     >
                       ✕
                     </button>
-                    <input
-                      type="text"
-                      placeholder="Type here"
-                      value={updateName}
-                      onChange={(e) => setUpdateName(e.target.value)} // Update state on change
-                      className="input input-bordered w-full max-w-xs"
-                    />
-                    <button
-                      className="bg-green-500 mt-2 px-5 rounded-lg py-2 text-white"
-                      onClick={() => handleBowlerEdit(matchId, id)}
-                    >
-                      Update
-                    </button>
+                    {/* Input and Update button */}
+                    <div className="flex flex-col items-center">
+                      <input
+                        type="text"
+                        placeholder="Type here"
+                        value={updateName}
+                        onChange={(e) => setUpdateName(e.target.value)} // Update state on change
+                        className="input input-bordered w-full max-w-xs mb-4"
+                      />
+                      <motion.button
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.8 }}
+                        className="bg-green-500 px-5 rounded-lg py-2 text-white"
+                        onClick={() => handleBowlerEdit(matchId, id)}
+                      >
+                        Update
+                      </motion.button>
+                    </div>
                   </div>
-                </section>
+                </div>
               )}
             </>
+            
             }
           </span>
           <span className="text-green-500 text-lg">
@@ -193,29 +207,37 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
                 <button disabled={batters.length >= 10}>Out</button>
               </div>
               {outOptins && (
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box w-36 p-2 shadow mt-2 z-20 flex flex-col gap-y-1"
+              <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center"
+              onClick={() => setOpenDropdownModal(false)} // Close modal on overlay click
+            >
+              <ul
+                className="bg-white rounded-lg w-64 p-5 shadow-lg z-50 flex flex-col gap-y-4"
+                onClick={(e) => e.stopPropagation()} // Prevent overlay click from closing modal
+              >
+                <li
+                  className="font-bold text-red-500 border-2 border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOut(id);
+                    
+                  }}
                 >
-                  <li
-                    className="font-bold text-red-500 border-2 border-red-500 px-2 rounded-lg"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleOut(id);
-                    }}
-                  >
-                    Out by bowler
-                  </li>
-                  <li
-                    className="font-bold text-red-500 border-2 border-red-500 px-2 rounded-lg"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRunOut(id);
-                    }}
-                  >
-                    Run Out
-                  </li>
-                </ul>
+                  Out by bowler
+                </li>
+                <li
+                  className="font-bold text-red-500 border-2 border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRunOut(id);
+                    setOpenDropdownModal(false); // Close modal after selection
+                  }}
+                >
+                  Run Out
+                </li>
+              </ul>
+            </div>
+              
               )}
             </div>
           </td>

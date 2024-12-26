@@ -141,7 +141,7 @@ const NewMatch = () => {
                 className="grow"
                 name="team1"
                 onChange={handleChange}
-                placeholder="Write Team1 Name"
+                placeholder="Write Team-1 Name"
               />
             </motion.label>
 
