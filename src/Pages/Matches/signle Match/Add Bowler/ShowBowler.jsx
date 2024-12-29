@@ -100,7 +100,7 @@ const ShowBowler = ({
                 }} // Close modal on overlay click
               >
                 <div
-                  className="modal-box bg-white rounded-lg p-5 w-80 relative shadow-lg"
+                  className="modal-box bg-white rounded-lg p-5 w-80 relative shadow-lg -top-40"
                   onClick={(e) => e.stopPropagation()} // Prevent overlay click from closing modal
                 >
                   {/* Close button */}
@@ -136,7 +136,7 @@ const ShowBowler = ({
            }
           </span>
           <span className="text-violet-600">
-            {bowler.strike && <GiDeathStar />}
+            {bowler.strike && <> <div className='w-3 h-3 bg-green-200 rounded-full flex justify-center items-center'> <div className='w-[6px] h-[6px] bg-green-600 rounded-full'></div> </div></> }
           </span>
         </th>
         <td>{Over}</td>

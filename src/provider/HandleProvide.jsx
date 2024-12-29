@@ -10,9 +10,13 @@ const HandleProvider = ({ children }) => {
   //   const savedMatch = localStorage.getItem("singleMatchId");
   //   return savedMatch ? JSON.parse(savedMatch) : null;
   // });
-
-  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket, singleMatchId } =
+  
+  const { teamTotal, setTeamTotal, teamWicket, setTeamWicket, singleMatchId, activeBatters, bowlers } =
     useContext(stateInfo);
+    const StrikeBatter = activeBatters?.find((batter)=> batter.strike)
+    const StrikeBowler = bowlers?.find((bowler)=> bowler.name)
+    // console.log("StrikeBatter:", StrikeBatter, "StrikeBowler:", StrikeBowler);
+
 
   // const handleSingleMatch = (match) => {
   //   setsingleMatchId(match);
@@ -25,6 +29,10 @@ const HandleProvider = ({ children }) => {
   Runs Handle start
  =================================================== */
   const handleOne = (teamTotal, _id, teamBall, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -48,6 +56,10 @@ const HandleProvider = ({ children }) => {
   };
 
   const handleTwo = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -69,6 +81,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleThree = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -91,6 +107,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleFour = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -113,6 +133,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleSix = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -135,6 +159,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleFive = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -158,6 +186,10 @@ const HandleProvider = ({ children }) => {
   };
 
   const handleZero = (totalRun, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -180,6 +212,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleOver = (teamOver, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     const matchId = _id; // Match ID to be sent
 
     fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
@@ -188,6 +224,32 @@ const HandleProvider = ({ children }) => {
         "content-type": "application/json",
       },
       body: JSON.stringify({ incrementOver: 1 }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("Response from backend:", data);
+        if (data.modifiedCount > 0) {
+          // toast(`Run Incremented`);
+          fetchBatterData();
+        } else {
+          console.log("No changes made.");
+        }
+      })
+      .catch((error) => console.error("Error updating teamTotal:", error));
+  };
+  const handleMOver = (teamOver, _id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
+    const matchId = _id; // Match ID to be sent
+
+    fetch(`https://cric-server.vercel.app/matches/${matchId}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ incrementOver: 1, overType: "maiden" }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -225,6 +287,10 @@ const HandleProvider = ({ children }) => {
   };
 
   const handleWide = (total, id, fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
       headers: {
@@ -244,6 +310,10 @@ const HandleProvider = ({ children }) => {
       .catch((error) => console.error("Error updating teamTotal:", error));
   };
   const handleNoBall = (total, id,fetchBatterData) => {
+    if(!StrikeBatter?.strike && !StrikeBowler?.strike){
+      toast.warn("Plz tap on Strike batter and bowler's name.")
+      return
+    }
     fetch(`https://cric-server.vercel.app/extra/${id}`, {
       method: "PUT",
       headers: {
@@ -274,7 +344,8 @@ const HandleProvider = ({ children }) => {
     handleOver,
     handleWide,
     handleFive,
-    handleNoBall
+    handleNoBall,
+    handleMOver
   };
 
   return <handlesInfo.Provider value={info}>{children}</handlesInfo.Provider>;

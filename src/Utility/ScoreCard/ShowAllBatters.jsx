@@ -4,7 +4,7 @@ import { GiDuck } from "react-icons/gi";
 import { span } from 'framer-motion/client';
 
 const ShowAllBatters = ({ batter, fetchBatterData }) => {
-  console.log(batter);
+  // console.log(batter);
   let { name, run, ball, fours, sixes, sr, id, active, stike, outBy } = batter;
   const strikeRate = ball > 0 ? parseFloat(((run * 100) / ball).toFixed(1)) : 0;
 

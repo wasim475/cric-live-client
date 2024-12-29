@@ -16,7 +16,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const currentBowler = bowlers?.find((bowler)=>bowler?.strike)
   const outBy = currentBowler?.name
-  console.log(outBy)
+  // console.log(outBy)
   const handleOut = (batterId) => {
     fetch(`https://cric-server.vercel.app/matches/${matchId}/${batterId}`, {
       method: "PUT", // Use uppercase "PUT" for better consistency
@@ -150,7 +150,7 @@ const ShowBatter = ({ batter, matchId, fetchBatterData, singleMatchData }) => {
                   }} // Close modal on overlay click
                 >
                   <div
-                    className="modal-box bg-white rounded-lg p-5 w-80 relative shadow-lg"
+                    className="modal-box bg-white rounded-lg p-5 w-80 z-50 relative shadow-lg -top-40"
                     onClick={(e) => e.stopPropagation()} // Prevent overlay click from closing modal
                   >
                     {/* Close button */}

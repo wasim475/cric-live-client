@@ -47,7 +47,7 @@ const AddBowler = ({ match, fetchBatterData,handleBowlerEdit }) => {
     Maiden: 0,
     Runs: 0,
     Wicket: 0,
-    stike: false,
+    strike: false,
   };
 
   const handleBowler = () => {

@@ -87,7 +87,7 @@ const RunandBall = () => {
                 name="my_tabs_1"
                 role="tab"
                 className="tab"
-                aria-label="Extra"
+                aria-label="Run-"
               />
               <div role="tabpanel" className="tab-content p-3">
                 {/* ============================
@@ -113,14 +113,14 @@ const RunandBall = () => {
                     name="tabs_2"
                     role="tab"
                     className="tab"
-                    aria-label="Extra+"
+                    aria-label="Run-"
                     defaultChecked
                   />
                   <div
                     role="tabpanel"
                     className="tab-content bg-base-100 border-base-300 rounded-box p-6"
                   >
-                    <Extra />
+                   <RunMinus />
                   </div>
                   <div
                     role="tabpanel"
@@ -135,12 +135,13 @@ const RunandBall = () => {
                     role="tab"
                     className="tab"
                     aria-label="Extra More"
+                    disabled
                   />
                   <div
                     role="tabpanel"
                     className="tab-content bg-base-100 border-base-300 rounded-box p-6"
                   >
-                    <NoballRun />
+                    <h1>Comming soon</h1>
                   </div>
                 </div>
 
@@ -167,13 +168,14 @@ const RunandBall = () => {
                     name="my_tabs_2"
                     role="tab"
                     className="tab"
-                    aria-label="Run-"
+                    aria-label="Extra"
                   />
                   <div
                     role="tabpanel"
                     className="tab-content bg-base-100 border-base-300 rounded-box p-6"
                   >
-                    <RunMinus />
+                    <Extra/>
+                    
                   </div>
 
                   <input

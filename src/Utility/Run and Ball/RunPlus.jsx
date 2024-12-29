@@ -69,21 +69,15 @@ const RunPlus = () => {
         <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => handleNoBall(teamTotal,  _id, fetchBatterData)}
-        className="bg-orange-500 text-white font-bold px-2 py-1 rounded-lg "
+        className="bg-orange-500 text-white  font-medium px-2 py-3 rounded-lg "
       >
-        No Ball
+        NoBall
       </motion.button>
-        {/* Maiden over */}
-        {/* <motion.button
-          onClick={() => handleMOver(totalOver, _id, fetchBatterData)}
-          className="bg-violet-500  py-3 rounded-lg text-white font-bold  "
-        >
-          M.Ov
-        </motion.button> */}
+      
         <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => handleWide(teamTotal, _id, fetchBatterData)}
-        className="bg-cyan-400 px-0 py-1 text-white font-bold rounded-lg"
+        className="bg-cyan-400 px-0 py-3 text-white font-bold rounded-lg"
       >
         Wide
       </motion.button>

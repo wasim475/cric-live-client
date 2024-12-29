@@ -13,10 +13,10 @@ const Navbar = () => {
     <nav className="flex justify-between mt-1">
       <div>
         <Link
-          className="text-xl font-extrabold px-2 rounded-md flex justify-center items-center"
+          className="text-xl font-medium px-2 rounded-md flex justify-center items-center"
           to={"/"}
         >
-          <span className="bg-black text-white px-1 rounded-md font-medium">Cric</span> Live
+          <span className="bg-black text-white px-1 rounded-md font-medium">Cric</span> Cast
         </Link>
       </div>
       <div className="flex justify-center gap-x-5">

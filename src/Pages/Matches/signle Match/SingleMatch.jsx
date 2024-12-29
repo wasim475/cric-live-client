@@ -11,6 +11,7 @@ import AddBatter from "./Add Batter/AddBatter";
 import ShowBatter from "./Add Batter/ShowBatter";
 import AddBowler from "./Add Bowler/AddBowler";
 import ShowBowler from "./Add Bowler/ShowBowler";
+import AutoRefresh from '../../../Utility/Buttons/AutoRefresh';
 
 const SingleMatch = () => {
   const location = useLocation();
@@ -18,7 +19,7 @@ const SingleMatch = () => {
   const { matches, setMatches, singleMatchId, setSingleMatchId, setCopyValue } =
     useContext(stateInfo);
   // console.log()
-  setCopyValue(`https://criclive1.netlify.app${location.pathname}`);
+  setCopyValue(`https://criccast.netlify.app${location.pathname}`);
   const { id } = useParams();
 
   setSingleMatchId(id)
@@ -87,6 +88,8 @@ const SingleMatch = () => {
     }
   }
 
+
+
   return (
     <main>
       {loading ? (
@@ -141,7 +144,7 @@ const SingleMatch = () => {
               </span>
             </h1>
             <div className="inline-block">
-              <ScoreCard />
+              <ScoreCard /> {user?.email !== email && <AutoRefresh/>}
             </div>
           </section>
           <h1 className={`flex overflow-hidden max-w-full text-[10px]`}>

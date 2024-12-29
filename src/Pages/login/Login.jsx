@@ -16,7 +16,7 @@ const Login = () => {
       <div className="w-full max-w-sm p-8 bg-white rounded-md shadow-md">
         <div className="flex flex-col items-center justify-center mb-6">
           <h1 className="mb-4 text-blue-500 font-medium">Login</h1>
-         <h1>Wellcome to <span className="bg-black text-white font-bold rounded-sm px-1">Cric</span><span className="font-bold">Live</span></h1>
+         <h1>Wellcome to <span className="bg-black text-white font-bold rounded-sm px-1">Cric</span><span className="font-bold">Cast</span></h1>
         </div>
         <button
           onClick={handleGoogleLogin}

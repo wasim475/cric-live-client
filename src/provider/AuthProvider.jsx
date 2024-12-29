@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
         signInWithPopup(auth, GoogleProvider)
         .then((result)=>{
             if(result.user){
-                toast('Login Successfull.')
+                toast.success('Login Successfull.')
                 Navigate(location?.state ? location.state : "/");
                 // Navigate("/")
             }

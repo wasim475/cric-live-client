@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { AuthContex } from "../../provider/AuthProvider";
 import { fetchInfo } from "../../provider/FetchProvider";
 import { handlesInfo } from "../../provider/HandleProvide";
+import { toast } from 'react-toastify';
 
 const ViewMatches = ({ match, fetchMatches }) => {
   const [matchInfo, setMatchInfo] = useState([]);
@@ -48,11 +49,7 @@ const ViewMatches = ({ match, fetchMatches }) => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: `Your match (${team1} vs ${team2}) has been deleted.`,
-                icon: "success",
-              });
+             toast.success(`Your match (${team1} vs ${team2}) has been deleted.`)
               fetchMatches();
             }
           });
@@ -119,7 +116,7 @@ const ViewMatches = ({ match, fetchMatches }) => {
                       teamWicket < 10 &&
                       parseInt(totalOver) > teamOver
                         ? `${batNow} need ${remaining} runs to win.`
-                        : target < teamTotal
+                        : target !== null && target < teamTotal
                         ? `${batNow} win by ${remainingWicket} wickets`
                         : teamWicket === 10 || parseInt(totalOver) === teamOver
                         ? `${batNow} lose by ${remaining - 1} runs`

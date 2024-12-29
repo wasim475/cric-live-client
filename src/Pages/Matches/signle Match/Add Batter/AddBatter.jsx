@@ -7,7 +7,7 @@ const AddBatter = ({ match, fetchBatterData }) => {
   const { _id } = match;
   const [batter, setBatter] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state for feedback
-  const { batters, setBatters,bowlers } = useContext(stateInfo);
+  const { batters, setBatters,activeBatters,bowlers } = useContext(stateInfo);
  
   const drawerCheckboxRef = useRef(null); // Ref for the drawer checkbox
   const inputRef = useRef(null); // Ref for the input field
@@ -35,13 +35,17 @@ const AddBatter = ({ match, fetchBatterData }) => {
     ball: 0,
     fours: 0,
     sixes: 0,
-    stike: false,
+    strike: false,
     outBy: "",
     sr: 0,
     active: true,
   };
 
   const handleBatter = () => {
+    if(activeBatters?.length===2){
+      toast.warn("Two batsmen are already on the pitch. A new batsman can only be added if one of them gets out.")
+      return
+    }
     setLoading(true);
     fetch(`https://cric-server.vercel.app/matches/${_id}`, {
       method: "POST",
